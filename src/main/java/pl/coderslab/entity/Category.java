@@ -5,6 +5,7 @@ import com.sun.istack.Nullable;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
