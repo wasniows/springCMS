@@ -23,6 +23,7 @@ public class Article {
     private String Content;
 
     private LocalDateTime created;
+
     private LocalDateTime updated;
 
     public void setId(Long id) {
