@@ -17,7 +17,7 @@ public class Article {
     @OneToOne
     private Author author;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Category> categories;
 
     private String Content;

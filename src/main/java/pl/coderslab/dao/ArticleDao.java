@@ -18,6 +18,10 @@ public class ArticleDao {
     EntityManager entityManager;
 
 
+    public Article findById(long id) {
+        return entityManager.find(Article.class, id);
+    }
+
     public void save(Article article) {
         entityManager.persist(article);
     }
