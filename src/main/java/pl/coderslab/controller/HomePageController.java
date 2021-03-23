@@ -1,13 +1,12 @@
 package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.entity.Article;
-import pl.coderslab.entity.Author;
 
-import java.util.List;
+import java.util.Collection;
 
 @Controller
 public class HomePageController {
@@ -19,11 +18,14 @@ public class HomePageController {
     }
 
     @GetMapping("/")
-    public String home(Model model){
-        List<Article> articles = articleDao.findAll();
-        model.addAttribute("articles", articles);
+    public String home(){
         return "home.jsp";
     }
 
+
+    @ModelAttribute("articles5")
+    public Collection<Article> articles5(){
+        return this.articleDao.findLastFive();
+    }
 
 }

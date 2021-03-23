@@ -26,7 +26,7 @@
 <body>
 
 <table>
-    <caption>List of articles</caption>
+    <caption>List of last 5 articles</caption>
     <thead>
     <tr>
         <th>Title</th>
@@ -35,21 +35,20 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items='${articles}' var="article">
+    <c:forEach items='${articles5}' var="article">
         <tr>
             <td>${article.title}</td>
             <td>${article.created}</td>
             <td>${article.content}</td>
-
-<%--            <td>--%>
-<%--                <a href="/editauthor/${author.id}">Edytuj</a> <br><br> <a href="/deleteauthor/${author.id}">Usuń</a>--%>
-<%--            </td>--%>
         </tr>
     </c:forEach>
 
     </tbody>
 
 </table>
+
+<br>
+<a href="/listofarticles">Lista wszystkich artykułów</a>
 
 </body>
 </html>
