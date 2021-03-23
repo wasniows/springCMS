@@ -35,8 +35,8 @@
         <th>Author</th>
         <th>Categories</th>
         <th>Content</th>
-        <th>created</th>
-        <th>updated</th>
+        <th>Created</th>
+        <th>Updated</th>
     </tr>
     </thead>
     <tbody>

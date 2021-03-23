@@ -75,4 +75,9 @@ public class ArticleController {
         return this.categoryDao.findAll();
     }
 
+    @ModelAttribute("articles")
+    public Collection<Article> articles(){
+        return this.articleDao.findAll();
+    }
+
 }

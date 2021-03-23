@@ -2,11 +2,16 @@ package pl.coderslab.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
 @Table(name = "articles")
 public class Article {
+
+    private static final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +27,9 @@ public class Article {
 
     private String Content;
 
-    private LocalDateTime created;
+    private String created;
 
-    private LocalDateTime updated;
+    private String updated;
 
     public void setId(Long id) {
         this.id = id;
@@ -66,29 +71,31 @@ public class Article {
         Content = content;
     }
 
-    public LocalDateTime getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public LocalDateTime getUpdated() {
+    public String getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDateTime updated) {
+    public void setUpdated(String updated) {
         this.updated = updated;
     }
 
+
     @PrePersist
-    public void prePersist(){
-        created = LocalDateTime.now();
+    public void prePersist() {
+        created = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_FORMATTER));
     }
 
     @PreUpdate
-    public void preUpdate(){
-        updated = LocalDateTime.now();
+    public void preUpdate() {
+
+        updated = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_FORMATTER));
     }
 }
