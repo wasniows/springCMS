@@ -2,6 +2,7 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.dao.AuthorDao;
@@ -10,6 +11,7 @@ import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,20 +29,22 @@ public class ArticleController {
     }
 
     @GetMapping("/listofarticles")
-    public String listOfArticles(Model model){
-        List<Article> articles = articleDao.findAll();
-        model.addAttribute("articles", articles);
-        return "listOfArticles.jsp";
+    public String listOfArticles(){
+        return "listOfArticles";
     }
 
     @GetMapping("/addarticle")
     public String formBook(Model model){
         model.addAttribute("article", new Article());
-        return "/addArticle.jsp";
+        return "addArticle";
     }
 
     @PostMapping("/addarticle")
-    public String addArticle (Article article){
+    public String addArticle (@Valid Article article, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "addArticle";
+        }
         articleDao.save(article);
         return "redirect:/listofarticles";
     }
@@ -49,11 +53,15 @@ public class ArticleController {
     public String editArticle(@PathVariable long id, Model model){
         Article article = articleDao.findById(id);
         model.addAttribute("article", article);
-        return "/editArticle.jsp";
+        return "editArticle";
     }
 
     @RequestMapping("/editarticle")
-    public String editArticle (Article article){
+    public String editArticle (@Valid Article article, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "editArticle";
+        }
         articleDao.update(article);
         return "redirect:/listofarticles";
     }

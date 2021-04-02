@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import com.sun.istack.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categories")
@@ -11,6 +12,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 5, message = "{name.category.min}")
     @Column(length = 100)
     private String name;
 

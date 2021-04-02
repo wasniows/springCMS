@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -16,16 +17,19 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 2, max = 200, message = "{name.min.max}")
     @Column(length = 200)
     private String title;
 
     @OneToOne
     private Author author;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @Size(min = 1, message = "{categories.min}")
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categories;
 
-    private String Content;
+    @Size(min = 5, message = "{content.min}")
+    private String content;
 
     private String created;
 
@@ -64,11 +68,11 @@ public class Article {
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public String getCreated() {

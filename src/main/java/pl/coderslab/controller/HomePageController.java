@@ -19,7 +19,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String home(){
-        return "home.jsp";
+        return "home";
     }
 
 
