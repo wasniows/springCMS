@@ -13,6 +13,7 @@
     <div class="container">
         <div class="navbar-nav">
             <a href="/listofarticles" class="nav-link nav-item">Artykuły</a>
+            <a href="/listofdrafts" class="nav-link nav-item">Szkice</a>
             <a href="/listofcategories" class="nav-link nav-item">Kategorie</a>
             <a href="/listofauthors" class="nav-link nav-item ">Autorzy</a>
         </div>
@@ -33,7 +34,7 @@
                 <small><form:errors path="firstName" cssClass="alert-danger"/></small>
             </div>
             <div class="form-group col-6">
-                <label for="lastName">Tytuł</label>
+                <label for="lastName">Nazwisko</label>
                 <form:input path="lastName" cssClass="form-control"/>
                 <small><form:errors path="lastName" cssClass="alert-danger"/></small>
             </div>

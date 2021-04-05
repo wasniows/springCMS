@@ -13,6 +13,7 @@
     <div class="container">
         <div class="navbar-nav">
             <a href="/listofarticles" class="nav-link nav-item">Artykuły</a>
+            <a href="/listofdrafts" class="nav-link nav-item">Szkice</a>
             <a href="/listofcategories" class="nav-link nav-item">Kategorie</a>
             <a href="/listofauthors" class="nav-link nav-item ">Autorzy</a>
         </div>
@@ -50,6 +51,15 @@
                 <small><form:errors path="content" cssClass="alert-danger"/></small>
             </div>
         </div>
+        <div class="row">
+            <div class="form-check">
+               <label class="form-check-label">
+                   <form:checkbox path="draft"/>
+                   Szkic
+               </label>
+            </div>
+        </div>
+        <br>
         <button type="submit" class="btn btn-primary" >Dodaj</button>
     </form:form>
 </div>

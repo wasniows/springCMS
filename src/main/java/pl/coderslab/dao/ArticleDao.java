@@ -36,13 +36,24 @@ public class ArticleDao {
     }
 
     public List<Article> findAll() {
-        Query query = entityManager.createQuery("select a from Article a");
+        Query query = entityManager.createQuery("select a from Article a where a.draft=false");
+        return query.getResultList();
+    }
+
+    public List<Article> findAllDrafts() {
+        Query query = entityManager.createQuery("select a from Article a where a.draft=true ");
         return query.getResultList();
     }
 
     public List<Article> findLastFive() {
         Query query = entityManager.createQuery("select a from Article a order by a.id desc");
         query.setMaxResults(5);
+        return query.getResultList();
+    }
+
+    public List<Article> findAuthorById(Long id){
+        Query query = entityManager.createQuery("select a from Article a where a.author.id=:id");
+        query.setParameter("id", id);
         return query.getResultList();
     }
 

@@ -15,6 +15,7 @@
     <div class="container">
         <div class="navbar-nav">
             <a href="/listofarticles" class="nav-link nav-item ">Artykuły</a>
+            <a href="/listofdrafts" class="nav-link nav-item">Szkice</a>
             <a href="/listofcategories" class="nav-link nav-item">Kategorie</a>
             <a href="/listofauthors" class="nav-link nav-item active">Autorzy</a>
         </div>

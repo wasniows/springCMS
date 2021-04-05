@@ -15,6 +15,7 @@
     <div class="container">
         <div class="navbar-nav">
             <a href="/listofarticles" class="nav-link nav-item active">Artykuły</a>
+            <a href="/listofdrafts" class="nav-link nav-item">Szkice</a>
             <a href="/listofcategories" class="nav-link nav-item">Kategorie</a>
             <a href="/listofauthors" class="nav-link nav-item">Autorzy</a>
         </div>
@@ -59,7 +60,7 @@
                 </form>
             </td>
             <td>
-                <form action="/deletearticle/${article.id}">
+                <form action="/delaccept/${article.id}">
                     <button class="btn btn-outline-danger btn-sm">usuń</button>
                 </form>
             </td>
@@ -68,6 +69,7 @@
     </c:forEach>
     </tbody>
 </table>
+
 
 <div class="row">
     <div class="col-3 pl-5">
@@ -79,3 +81,5 @@
 
 </body>
 </html>
+
+

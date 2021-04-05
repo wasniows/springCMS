@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add category</title>
+    <title>Delete</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -21,26 +21,32 @@
 </nav>
 <div class=" bg-success text-white text-center">
     <div class="container">
-        <h3 class="display-4">Nowa kategoria</h3>
+        <h3 class="display-4">Usuwanie</h3>
     </div>
 </div>
-<%--@elvariable id="category" type="pl.coderslab.entity.Category"--%>
-<div class="container pt-5">
-    <form:form method="post" modelAttribute="category">
+
+<div class="container">
+
+    <div class="text-center">
+        <br><br>
+        <h3>Czy napewno chcesz usunąć artykuł ?</h3>
+    </div>
+    <br><br>
+
+    <div class="container">
         <div class="row">
-            <div class="form-group col-6">
-                <label for="name">Nazwa</label>
-                <form:input path="name" cssClass="form-control"/>
-                <small><form:errors path="name" cssClass="alert-danger"/></small>
+            <div class="col-1 offset-5">
+                <form action="/deletearticle/${id}">
+                    <button class="btn btn-outline-danger btn-lg">Usuń</button>
+                </form>
             </div>
-            <div class="form-group col-6">
-                <label for="description">Opis</label>
-                <form:input path="description" cssClass="form-control"/>
-                <small><form:errors path="description" cssClass="alert-danger"/></small>
+            <div  class="col-1">
+                <form action="/listofarticles">
+                    <button class="btn btn-outline-primary btn-lg">Anuluj</button>
+                </form>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" >Dodaj</button>
-    </form:form>
+    </div>
 </div>
 </body>
 </html>

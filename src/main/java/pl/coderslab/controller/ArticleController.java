@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.dao.AuthorDao;
@@ -16,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
+@SessionAttributes("article")
 public class ArticleController {
 
     private final ArticleDao articleDao;
@@ -40,7 +42,12 @@ public class ArticleController {
     }
 
     @PostMapping("/addarticle")
-    public String addArticle (@Valid Article article, BindingResult bindingResult){
+    public String addArticle (@Validated(Article.ValidationArticle.class) Article article, BindingResult bindingResult, Model model){
+
+        if (article.isDraft()){
+            model.addAttribute("article", article);
+            return "addDraft";
+        }
 
         if (bindingResult.hasErrors()){
             return "addArticle";
@@ -57,13 +64,24 @@ public class ArticleController {
     }
 
     @RequestMapping("/editarticle")
-    public String editArticle (@Valid Article article, BindingResult bindingResult){
+    public String editArticle (@Validated(Article.ValidationArticle.class) Article article, BindingResult bindingResult, Model model){
+
+        if (article.isDraft()){
+            model.addAttribute("article", article);
+            return "editDraft";
+        }
 
         if (bindingResult.hasErrors()){
             return "editArticle";
         }
         articleDao.update(article);
         return "redirect:/listofarticles";
+    }
+
+    @RequestMapping("/delaccept/{id}")
+    public String delAccept(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        return "/delAccept";
     }
 
     @RequestMapping("/deletearticle/{id}")

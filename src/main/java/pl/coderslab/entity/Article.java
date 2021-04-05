@@ -12,28 +12,42 @@ public class Article {
 
     private static final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
 
+    public interface ValidationDraft{
+    }
+    public interface ValidationArticle{
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, max = 200, message = "{name.min.max}")
+    @Size(min = 2, max = 200, message = "{name.min.max}", groups = {ValidationDraft.class, ValidationArticle.class})
     @Column(length = 200)
     private String title;
 
     @OneToOne
     private Author author;
 
-    @Size(min = 1, message = "{categories.min}")
+    @Size(min = 1, message = "{categories.min}", groups = {ValidationArticle.class})
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categories;
 
-    @Size(min = 5, message = "{content.min}")
+    private boolean draft;
+
+    @Size(min = 5, message = "{content.min}",groups = {ValidationDraft.class, ValidationArticle.class})
     private String content;
 
     private String created;
 
     private String updated;
+
+    public boolean isDraft() {
+        return draft;
+    }
+
+    public void setDraft(boolean draft) {
+        this.draft = draft;
+    }
 
     public void setId(Long id) {
         this.id = id;

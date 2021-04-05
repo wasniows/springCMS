@@ -13,6 +13,7 @@
     <div class="container">
         <div class="navbar-nav">
             <a href="/listofarticles" class="nav-link nav-item">Artykuły</a>
+            <a href="/listofdrafts" class="nav-link nav-item">Szkice</a>
             <a href="/listofcategories" class="nav-link nav-item">Kategorie</a>
             <a href="/listofauthors" class="nav-link nav-item ">Autorzy</a>
         </div>
@@ -39,7 +40,7 @@
             </div>
         </div>
         <form:hidden path="id" />
-        <button type="submit" class="btn btn-primary" >Dodaj</button>
+        <button type="submit" class="btn btn-primary" >Edytuj</button>
     </form:form>
 </div>
 </body>

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add category</title>
+    <title>Edit draft</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -21,25 +21,36 @@
 </nav>
 <div class=" bg-success text-white text-center">
     <div class="container">
-        <h3 class="display-4">Nowa kategoria</h3>
+        <h3 class="display-4">Edycja szkicu</h3>
     </div>
 </div>
-<%--@elvariable id="category" type="pl.coderslab.entity.Category"--%>
+<%--@elvariable id="article" type="pl.coderslab.entity.Article"--%>
 <div class="container pt-5">
-    <form:form method="post" modelAttribute="category">
+    <form:form action="/editdraft" modelAttribute="article">
         <div class="row">
             <div class="form-group col-6">
-                <label for="name">Nazwa</label>
-                <form:input path="name" cssClass="form-control"/>
-                <small><form:errors path="name" cssClass="alert-danger"/></small>
+                <label for="title">Tytuł</label>
+                <form:input path="title" cssClass="form-control"/>
+                <small><form:errors path="title" cssClass="alert-danger"/></small>
             </div>
             <div class="form-group col-6">
-                <label for="description">Opis</label>
-                <form:input path="description" cssClass="form-control"/>
-                <small><form:errors path="description" cssClass="alert-danger"/></small>
+                <label for="content">Zawartość</label>
+                <form:textarea path="content" cssClass="form-control"/>
+                <small><form:errors path="content" cssClass="alert-danger"/></small>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" >Dodaj</button>
+        <div class="row">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <form:checkbox path="draft" checked="true"/>
+                    Szkic
+                </label>
+            </div>
+        </div>
+        <br>
+        <form:hidden path="id" />
+        <form:hidden path="created" />
+        <button type="submit" class="btn btn-primary" >Edytuj</button>
     </form:form>
 </div>
 </body>
