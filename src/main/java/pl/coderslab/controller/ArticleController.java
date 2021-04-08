@@ -1,33 +1,41 @@
 package pl.coderslab.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.ArticleDao;
-import pl.coderslab.dao.AuthorDao;
-import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
+import pl.coderslab.repository.ArticleRepository;
+import pl.coderslab.repository.AuthorRepository;
+import pl.coderslab.repository.CategoryRepository;
 
-import javax.validation.Valid;
+
 import java.util.Collection;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 @SessionAttributes("article")
 public class ArticleController {
 
     private final ArticleDao articleDao;
-    private final AuthorDao authorDao;
-    private final CategoryDao categoryDao;
+    private final ArticleRepository articleRepository;
+    private final AuthorRepository authorRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ArticleController(ArticleDao articleDao, AuthorDao authorDao, CategoryDao categoryDao) {
-        this.articleDao = articleDao;
-        this.authorDao = authorDao;
-        this.categoryDao = categoryDao;
+
+
+    @GetMapping(value = "/articles", params = "categoryName")
+    String ArticlesByCategoryName(@RequestParam("categoryName") String categoryName, Model model){
+
+        List<Article> articles = articleRepository.findArticleByCategoryName(categoryName);
+        model.addAttribute("articles", articles);
+        return "listOfArticles";
     }
 
     @GetMapping("/listofarticles")
@@ -93,17 +101,16 @@ public class ArticleController {
 
     @ModelAttribute("authors")
     public Collection<Author> authors(){
-        return this.authorDao.findAll();
+        return this.authorRepository.findAll();
     }
 
     @ModelAttribute("categories")
     public Collection<Category> categories(){
-        return this.categoryDao.findAll();
+        return this.categoryRepository.findAll();
     }
 
     @ModelAttribute("articles")
     public Collection<Article> articles(){
         return this.articleDao.findAll();
     }
-
 }

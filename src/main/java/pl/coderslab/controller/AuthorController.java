@@ -8,7 +8,6 @@ import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
-
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;

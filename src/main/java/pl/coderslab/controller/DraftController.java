@@ -39,7 +39,12 @@ public class DraftController {
     }
 
     @PostMapping("/adddraft")
-    public String addArticle (@Validated(Article.ValidationDraft.class) Article article, BindingResult bindingResult){
+    public String addArticle (@Validated(Article.ValidationDraft.class) Article article, BindingResult bindingResult, Model model){
+
+        if (!article.isDraft()){
+            model.addAttribute("article", article);
+            return "addArticle";
+        }
 
         if (bindingResult.hasErrors()){
             return "addDraft";

@@ -40,7 +40,7 @@
     <c:forEach items='${categories}' var="category">
         <tr>
             <td><%=num%></td>
-            <td>${category.name}</td>
+            <td><a href="/articles?categoryName=${category.name}">${category.name}</a></td>
             <td>${category.description}</td>
             <td>
                 <form action="/editcategory/${category.id}">

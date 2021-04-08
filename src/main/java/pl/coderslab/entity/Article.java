@@ -108,6 +108,7 @@ public class Article {
 
     @PrePersist
     public void prePersist() {
+
         created = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_FORMATTER));
     }
 
