@@ -1,2 +1,4 @@
 INSERT INTO authors (firstName, lastName) VALUE ('Jan', 'Kowalski'), ('Marian', 'Waza'), ('Szczepan', 'Kotula');
 INSERT INTO categories (description, name) VALUE ('wydarzenia sportowe', 'Sport'), ('recenzje filmow', 'filmy'), ('najnowsze wiadomosci ze sceny politycznej', 'Polityka');
+INSERT INTO articles (content, created, draft, title, author_id) VALUE ('A falsis, amicitia regius glos.','2021-04-08 08:43:33',false,'artykul 1',1),('Nunquam perdere domus.','2021-04-08 08:43:33',false,'artykul 2',2),('Heuretes de festus turpis, desiderium luna!','2021-04-08 08:43:33',false,'artykul 3',3),('Ubi est domesticus mens?','2021-04-08 08:43:33',false,'artykul 4',2),('Competitions sunt nomens de varius onus.','2021-04-08 08:43:33',false,'artykul 5',3),('A falsis, fiscina primus vortex.','2021-04-08 08:43:33',false,'artykul 6',1);
+INSERT INTO articles_categories (Article_id, categories_id) VALUE (1,1),(2,1),(3,3),(4,2),(5,1),(6,2);

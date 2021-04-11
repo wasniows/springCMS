@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div  class="col text-center">
-                <form action="/listofauthors">
+                <form action="${link}">
                     <button class="btn btn-outline-primary btn-lg">Powrót</button>
                 </form>
             </div>

@@ -24,10 +24,11 @@ public class AuthorController {
     }
 
     @RequestMapping("/deleteauthor/{id}")
-    public String delete(@PathVariable long id){
+    public String delete(@PathVariable long id, Model model){
 
         List<Article> list = articleDao.findAuthorById(id);
         if (!(list.size() == 0)) {
+            model.addAttribute("link", "/listofauthors");
             return "noDelete";
         }
 

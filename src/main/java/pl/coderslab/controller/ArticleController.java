@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
@@ -23,11 +22,9 @@ import java.util.List;
 @SessionAttributes("article")
 public class ArticleController {
 
-    private final ArticleDao articleDao;
     private final ArticleRepository articleRepository;
     private final AuthorRepository authorRepository;
     private final CategoryRepository categoryRepository;
-
 
 
     @GetMapping(value = "/articles", params = "categoryName")
@@ -60,13 +57,13 @@ public class ArticleController {
         if (bindingResult.hasErrors()){
             return "addArticle";
         }
-        articleDao.save(article);
+        articleRepository.save(article);
         return "redirect:/listofarticles";
     }
 
     @GetMapping("/editarticle/{id}")
     public String editArticle(@PathVariable long id, Model model){
-        Article article = articleDao.findById(id);
+        Article article = articleRepository.findArticleById(id);
         model.addAttribute("article", article);
         return "editArticle";
     }
@@ -82,7 +79,7 @@ public class ArticleController {
         if (bindingResult.hasErrors()){
             return "editArticle";
         }
-        articleDao.update(article);
+        articleRepository.save(article);
         return "redirect:/listofarticles";
     }
 
@@ -94,8 +91,8 @@ public class ArticleController {
 
     @RequestMapping("/deletearticle/{id}")
     public String delete(@PathVariable long id){
-        Article article = articleDao.findById(id);
-        articleDao.delete(article);
+        Article article = articleRepository.findArticleById(id);
+        articleRepository.delete(article);
         return "redirect:/listofarticles";
     }
 
@@ -111,6 +108,6 @@ public class ArticleController {
 
     @ModelAttribute("articles")
     public Collection<Article> articles(){
-        return this.articleDao.findAll();
+        return this.articleRepository.findAllArticles();
     }
 }
